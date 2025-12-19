@@ -1,21 +1,20 @@
 <script>
     import "@onsvisual/svelte-components/css/main.css"; // This is more typically imported in the global +layout.svelte
     import {
-        Header,
         Hero,
         Highlight,
         Section,
         Grid,
+        GridCell,
         Divider,
-        Main,
         Blockquote,
         Em,
         Scroller,
         ScrollerSection,
-        Footer,
+        Container,
     } from "@onsvisual/svelte-components";
 
-    export let data;//import the data for the content
+    export let data; //import the data for the content
 
     const scrollerColors = ["#ddd", "#777", "#222"];
     let scrollerColor = scrollerColors[0];
@@ -25,12 +24,16 @@
 </script>
 
 {#each contents as block}
-    {#if block.Type === "Header"}
-        <Header compact={block.Compact === "true"} />
-    {:else if block.Type === "Hero"}
-        <Hero title={block.Title} lede={block.Lede} date={block.Date} />
+    {#if block.Type === "Hero"}
+        <Hero
+            theme="blue"
+            title={block.Title}
+            lede={block.Lede}
+            date={block.Date}
+            height={400}
+        />
     {:else if block.Type === "Highlight"}
-        <Highlight marginBottom={block.marginBottom === "true"}>
+        <Highlight height={400} marginBottom={block.marginBottom === "true"}>
             {#each block.texts as text}
                 <p>{text.value}</p>
             {/each}
@@ -48,9 +51,11 @@
             {/each}
         </Section>
     {:else if block.Type === "Grid"}
-        <Grid caption={block.Caption}>
+        <Grid cls="custom-grid" caption={block.Caption} rowHeight={200}>
             {#each block.cells as cell}
-                <div class="grid-cell">{cell.value}</div>
+                <GridCell>
+                    <div>{cell.value}</div>
+                </GridCell>
             {/each}
         </Grid>
     {:else if block.Type === "Divider"}
@@ -59,14 +64,14 @@
         <Scroller
             id={block.Id}
             splitscreen={block.Splitscreen === "true"}
-            on:change="{(e) =>(scrollerColor = scrollerColors[e.detail.index])}">
+            on:change={(e) => (scrollerColor = scrollerColors[e.detail.index])}
+        >
             <div slot="background">
-                <Grid width="full" height="full">
-                    <div
-                        class="placeholder-block"
-                        style:background-color={scrollerColor}
-                    ></div>
-                </Grid>
+                <Container
+                    width="full"
+                    height="full"
+                    background={scrollerColor}
+                />
             </div>
             <div slot="foreground">
                 {#each block.foreground.ScrollerSections as section}
@@ -78,7 +83,5 @@
                 {/each}
             </div>
         </Scroller>
-    {:else if block.Type === "Footer"}
-        <Footer compact={block.Compact === "true"} />
     {/if}
 {/each}

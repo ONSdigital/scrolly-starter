@@ -1,1 +1,7 @@
 /* Put your css overrides here */
+.custom-grid .ons-grid__col > div {
+    display: block;
+    height: 100%;
+    background: #eee;
+    padding: 0.5em;
+}
