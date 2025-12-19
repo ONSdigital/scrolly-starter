@@ -1,8 +1,8 @@
 // APP CONFIG
 
 // Base paths
-export const base_prod = '/scrolly-template'; // Directory on the ONS website
-export const base_preview = '/scrolly-template'; // Directory on datavisweb preview server or Github Pages
+export const base_prod = '/scrolly-starter'; // Directory on the ONS website
+export const base_preview = '/scrolly-starter'; // Directory on datavisweb preview server or Github Pages
 
 
 // BUILD DATA CONFIG

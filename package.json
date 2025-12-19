@@ -5,8 +5,10 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && node ./scripts/js-fix",
+		"build:preview": "cross-env PUBLIC_APP_ENV=preview vite build",
 		"build:text": "node ./scripts/build-text.js",
-		"preview": "vite preview"
+		"preview": "vite preview",
+    	"deploy": "gh-pages -d build -t"
 	},
 	"author": "Henry Lau",
 	"license": "MIT",
@@ -17,6 +19,8 @@
 		"@sveltejs/kit": "^2.49.2",
 		"@sveltejs/vite-plugin-svelte": "^6.2.1",
 		"archieml": "^0.5.0",
+		"cross-env": "^10.1.0",
+		"gh-pages": "^6.3.0",
 		"htmlparser2": "^10.0.0",
 		"mammoth": "^1.11.0",
 		"svelte": "^5.0.0",
