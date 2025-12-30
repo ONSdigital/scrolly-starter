@@ -8,7 +8,7 @@
 		"build:preview": "cross-env PUBLIC_APP_ENV=preview vite build",
 		"build:text": "node ./scripts/build-text.js",
 		"preview": "vite preview",
-    	"deploy": "gh-pages -d build -t"
+		"deploy": "gh-pages -d build -t"
 	},
 	"author": "Henry Lau",
 	"license": "MIT",
